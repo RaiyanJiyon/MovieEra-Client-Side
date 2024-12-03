@@ -1,10 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import logo from '../assets/icons/logo.png'
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { authContext } from "../contexts/AuthProvider";
+import ErrorToaster from "../components/Toaster/ErrorToaster";
+import SuccessToaster from "../components/Toaster/SuccessToaster";
 
 const Register = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const navigate = useNavigate();
+
+    const { createUserWithEmail } = useContext(authContext)
+
     const [passwordToggle, setPasswordToggle] = useState(false);
 
     const handlePasswordToggle = () => {
@@ -13,8 +24,38 @@ const Register = () => {
 
     const handleRegisterForm = e => {
         e.preventDefault();
+
         // Handle form submission
-    }
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const photoURL = formData.get('photoURL');
+        const password = formData.get('password');
+
+        const userInformation = { name, email, photoURL, password }
+
+        console.log(userInformation);
+
+        const validPassword = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+        if (!validPassword.test(password)) {
+            ErrorToaster('Password must be at least 6 characters long and contain at least 1 uppercase and 1 lowercase letter.');
+            return;
+        }
+
+        createUserWithEmail(email, password)
+            .then(userCredential => {
+                console.log(userCredential.user);
+                SuccessToaster('Successfully Signed In');
+                navigate('/');
+            })
+            .catch(error => {
+                console.error(error.message);
+                ErrorToaster(error.message);
+            });
+    };
 
     return (
         <section>
@@ -80,22 +121,6 @@ const Register = () => {
                                 />
                                 <div onClick={handlePasswordToggle} className='absolute inset-y-0 right-0 flex items-center pr-3 pt-7 cursor-pointer'>
                                     {passwordToggle ? <FaEyeSlash /> : <FaEye />}
-                                </div>
-                            </div>
-                            <div className="flex items-start">
-                                <div className="flex items-center h-5">
-                                    <input
-                                        id="terms"
-                                        aria-describedby="terms"
-                                        type="checkbox"
-                                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
-                                        required
-                                    />
-                                </div>
-                                <div className="ml-3 text-sm">
-                                    <label htmlFor="terms" className="font-light text-gray-500">
-                                        I accept the <a className="font-medium text-primary-600 hover:underline" href="#">Terms and Conditions</a>
-                                    </label>
                                 </div>
                             </div>
                             <Button text={"Create an account"} />

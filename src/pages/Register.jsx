@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../components/common/Button";
-import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import logo from '../assets/icons/logo.png'
 import { useState } from "react";
 

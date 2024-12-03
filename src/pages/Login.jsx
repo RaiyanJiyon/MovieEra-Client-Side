@@ -1,22 +1,63 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
 import logo from '../assets/icons/logo.png'
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { authContext } from "../contexts/AuthProvider";
+import ErrorToaster from "../components/Toaster/ErrorToaster";
+import SuccessToaster from "../components/Toaster/SuccessToaster";
 
 const Login = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const [passwordToggle, setPasswordToggle] = useState(false);
+
+    const {signInUser} = useContext(authContext);
 
     const handleToggle = () => {
         setPasswordToggle(prev => !prev);
     };
 
-
-
     const handleLoginForm = e => {
         e.preventDefault();
+
+        // Handle form submission
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+
+        const email = formData.get('email');
+        const password = formData.get('password');
+
+        const userLoginInformation = { email, password };
+        console.log(userLoginInformation);
+
+        signInUser(email, password)
+        .then(userCredential => {
+            console.log(userCredential.user);
+            SuccessToaster('Successfully Logged In');
+            form.reset();
+            navigate(location?.state? location.state : '/');
+        })
+        .catch(error => {
+            console.error(error);
+            ErrorToaster('Incorrect username or password. Please try again.');
+        });
     };
 
+    const navigateToForgetPassword = () => {
+        const emailInput = document.getElementById('email');
+        navigate('/forgot-password', {
+            state: {
+                email: emailInput.value,
+            },
+        });
+    };
+    
     return (
         <section className="mt-6">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
@@ -56,7 +97,7 @@ const Login = () => {
                                         <label htmlFor="remember" className="text-gray-500">Remember me</label>
                                     </div>
                                 </div>
-                                <span className="text-sm font-medium text-[#E50916] hover:underline cursor-pointer">Forgot password?</span>
+                                <span onClick={navigateToForgetPassword} className="text-sm font-medium text-[#E50916] hover:underline cursor-pointer">Forgot password?</span>
                             </div>
                             <Button text='Sign In' />
                             <p className="text-sm font-light text-gray-500">

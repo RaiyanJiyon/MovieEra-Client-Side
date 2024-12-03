@@ -49,6 +49,7 @@ const Register = () => {
             .then(userCredential => {
                 console.log(userCredential.user);
                 SuccessToaster('Successfully Signed In');
+                form.reset();
                 navigate('/');
             })
             .catch(error => {

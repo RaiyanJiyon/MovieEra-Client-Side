@@ -1,0 +1,69 @@
+src/
+├── assets/
+│   ├── images/
+│   └── styles/
+│       └── index.css
+│
+├── components/
+│   ├── common/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── LoadingSpinner.jsx
+│   │   ├── MovieCard.jsx
+│   │   ├── StarRating.jsx
+│   │   └── Button.jsx
+│   │
+│   ├── forms/
+│   │   ├── LoginForm.jsx
+│   │   ├── RegisterForm.jsx
+│   │   └── MovieForm.jsx
+│   │
+│   ├── home/
+│   │   ├── Banner.jsx
+│   │   ├── FeaturedMovies.jsx
+│   │   └── ExtraSections/
+│   │       ├── Section1.jsx
+│   │       └── Section2.jsx
+│   │
+│   └── movies/
+│       ├── MovieGrid.jsx
+│       ├── MovieDetails.jsx
+│       └── SearchBar.jsx
+│
+├── contexts/
+│   ├── AuthContext.jsx
+│   └── ThemeContext.jsx
+│
+├── hooks/
+│   ├── useAuth.js
+│   └── useTheme.js
+│
+├── layouts/
+│   └── MainLayout.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── AllMovies.jsx
+│   ├── AddMovie.jsx
+│   ├── UpdateMovie.jsx
+│   ├── MovieDetails.jsx
+│   ├── MyFavorites.jsx
+│   ├── Login.jsx
+│   ├── Register.jsx
+│   └── NotFound.jsx
+│
+├── routes/
+│   ├── PrivateRoute.jsx
+│   └── Routes.jsx
+│
+├── services/
+│   ├── auth.service.js
+│   └── movie.service.js
+│
+├── utils/
+│   ├── axios.config.js
+│   ├── firebase.config.js
+│   └── toast.js
+│
+├── App.jsx
+└── main.jsx

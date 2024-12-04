@@ -6,8 +6,17 @@ import {
 import "./index.css";
 import router from "./routes/Routes";
 import { AuthProvider } from "./contexts/AuthProvider";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+// Initialize AOS
+AOS.init({
+  duration: 1000,
+  once: false,
+  offset: 120,
+});
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

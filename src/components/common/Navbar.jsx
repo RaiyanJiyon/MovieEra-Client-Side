@@ -59,7 +59,7 @@ const Navbar = () => {
                 </div>
                 <Link to={"/"} className="btn btn-ghost text-xl">
                     <img className="w-8" src={logo} alt="website logo" />
-                    <span>Lingo Bingo</span>
+                    <span>Movie Era</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -93,8 +93,8 @@ const Navbar = () => {
                         </div>
                         :
                         <div className="space-x-2">
-                        <Link to={"/login"} className="px-4 py-1 rounded-3xl bg-black text-white font-semibold border-2 border-[#F15E75] hover:bg-white hover:text-black">Login</Link>
-                        <Link to={"/register"} className="px-4 py-1 rounded-3xl bg-black text-white font-semibold border-2 border-[#F15E75] hover:bg-white hover:text-black">Register</Link>
+                            <Link to={"/login"} className="px-4 py-1 rounded-3xl bg-black text-white font-semibold border-2 border-[#F15E75] hover:bg-white hover:text-black">Login</Link>
+                            <Link to={"/register"} className="px-4 py-1 rounded-3xl bg-black text-white font-semibold border-2 border-[#F15E75] hover:bg-white hover:text-black">Register</Link>
                         </div>
                 }
             </div>

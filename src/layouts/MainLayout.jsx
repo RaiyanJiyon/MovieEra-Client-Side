@@ -5,7 +5,7 @@ import Footer from "../components/common/Footer";
 const MainLayout = () => {
     return (
         <div className="max-w-7xl mx-auto">
-            <div>
+            <div className="sticky top-0 z-10">
                 <Navbar />
             </div>
             <Outlet />

@@ -1,0 +1,111 @@
+[
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/IZ4gvxPUuKBIbANzu19YTgYY27403986.jpg",
+      "MovieTitle": "Inception",
+      "Genre": "Science Fiction",
+      "Duration": "148 mins",
+      "ReleaseYear": 2010,
+      "Rating": 9.0,
+      "SeeDetails": "/movies/inception"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/hxdkLEJIsWAJf7Wu1h66nQYY27540542.jpg",
+      "MovieTitle": "The Shawshank Redemption",
+      "Genre": "Drama",
+      "Duration": "142 mins",
+      "ReleaseYear": 1994,
+      "Rating": 9.3,
+      "SeeDetails": "/movies/shawshank"
+    },
+    {
+      "MoviePoster": "https://m.media-amazon.com/images/M/MV5BOGJmNmRjMDUtMzM1OS00ZTVlLTkzZjUtZjA2NGI4ODI0MjEzXkEyXkFqcGc@._V1_SX300.jpg",
+      "MovieTitle": "The Dark Knight",
+      "Genre": "Action",
+      "Duration": "152 mins",
+      "ReleaseYear": 2008,
+      "Rating": 9.1,
+      "SeeDetails": "/movies/dark-knight"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/u7yVMZAwJoYtzfuo3QaYXAYY16358384.jpg",
+      "MovieTitle": "Forrest Gump",
+      "Genre": "Drama",
+      "Duration": "142 mins",
+      "ReleaseYear": 1994,
+      "Rating": 8.8,
+      "SeeDetails": "/movies/forrest-gump"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/uploads/images/ce32450de2d61c43392c.jpg",
+      "MovieTitle": "Pulp Fiction",
+      "Genre": "Crime",
+      "Duration": "154 mins",
+      "ReleaseYear": 1994,
+      "Rating": 8.9,
+      "SeeDetails": "/movies/pulp-fiction"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/tb9qYfhNJovH3xpWJGEsUQYY26670955.jpg",
+      "MovieTitle": "The Godfather",
+      "Genre": "Crime",
+      "Duration": "175 mins",
+      "ReleaseYear": 1972,
+      "Rating": 9.2,
+      "SeeDetails": "/movies/godfather"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/cnv296kP24dnuVxgxO70GQYY15980138.jpg",
+      "MovieTitle": "The Lord of the Rings: The Return of the King",
+      "Genre": "Fantasy",
+      "Duration": "201 mins",
+      "ReleaseYear": 2003,
+      "Rating": 9.0,
+      "SeeDetails": "/movies/lotr-return-of-king"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/dz53Rg7eboyi8yO1GSLuTAYY20215234.jpg",
+      "MovieTitle": "The Good, the Bad and the Ugly",
+      "Genre": "Western",
+      "Duration": "161 mins",
+      "ReleaseYear": 1966,
+      "Rating": 8.8,
+      "SeeDetails": "/movies/good-bad-ugly"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/pWK9IfkuYgHa5MMOkD5wewYY9813792.jpg",
+      "MovieTitle": "Schindler's List",
+      "Genre": "Biography",
+      "Duration": "195 mins",
+      "ReleaseYear": 1993,
+      "Rating": 9.0,
+      "SeeDetails": "/movies/schindlers-list"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/iWZ3BJae5aPIym4UZrOC4AYY10243672.jpg",
+      "MovieTitle": "Fight Club",
+      "Genre": "Drama",
+      "Duration": "139 mins",
+      "ReleaseYear": 1999,
+      "Rating": 8.8,
+      "SeeDetails": "/movies/fight-club"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/LyWt4cANhOTanbecjb5NHQYY27131358.jpg",
+      "MovieTitle": "Interstellar",
+      "Genre": "Science Fiction",
+      "Duration": "169 mins",
+      "ReleaseYear": 2014,
+      "Rating": 8.7,
+      "SeeDetails": "/movies/interstellar"
+    },
+    {
+      "MoviePoster": "https://www.torrentbd.net/posters/TrZmZEGDrk5pRVZm1KfXKQYY29268110.jpg",
+      "MovieTitle": "Parasite",
+      "Genre": "Thriller",
+      "Duration": "132 mins",
+      "ReleaseYear": 2019,
+      "Rating": 8.6,
+      "SeeDetails": "/movies/parasite"
+    }
+  ]
+  

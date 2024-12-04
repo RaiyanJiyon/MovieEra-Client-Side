@@ -17,7 +17,7 @@ const Login = () => {
 
     const [passwordToggle, setPasswordToggle] = useState(false);
 
-    const {signInUser} = useContext(authContext);
+    const { setUser, signInUser, createUserWithGoogle } = useContext(authContext);
 
     const handleToggle = () => {
         setPasswordToggle(prev => !prev);
@@ -37,16 +37,29 @@ const Login = () => {
         console.log(userLoginInformation);
 
         signInUser(email, password)
-        .then(userCredential => {
-            console.log(userCredential.user);
-            SuccessToaster('Successfully Logged In');
-            form.reset();
-            navigate(location?.state? location.state : '/');
-        })
-        .catch(error => {
-            console.error(error);
-            ErrorToaster('Incorrect username or password. Please try again.');
-        });
+            .then(userCredential => {
+                console.log(userCredential.user);
+                SuccessToaster('Successfully Logged In');
+                form.reset();
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch(error => {
+                console.error(error);
+                ErrorToaster('Incorrect username or password. Please try again.');
+            });
+    };
+
+    const handleGoogleSignIn = () => {
+        createUserWithGoogle()
+            .then(result => {
+                const user = result.user;
+                SuccessToaster("Successfully Sign In with Google");
+                setUser(user);
+                navigate("/");
+            })
+            .catch(error => {
+                ErrorToaster(error.message);
+            });
     };
 
     const navigateToForgetPassword = () => {
@@ -57,7 +70,7 @@ const Login = () => {
             },
         });
     };
-    
+
     return (
         <section className="mt-6">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
@@ -72,7 +85,7 @@ const Login = () => {
                         </h1>
                         <form onSubmit={handleLoginForm} className="space-y-4 md:space-y-6" action="#">
                             <div className="flex flex-col md:flex-row items-center justify-between gap-2">
-                                <div className="flex items-center md:justify-center gap-2 w-full hover:bg-gray-100 border border-gray-300 px-4 py-2 rounded-lg cursor-pointer">
+                                <div onClick={handleGoogleSignIn} className="flex items-center md:justify-center gap-2 w-full hover:bg-gray-100 border border-gray-300 px-4 py-2 rounded-lg cursor-pointer">
                                     <FaGoogle className="text-xl" />
                                     <span className="text-base font-medium">Log in with Google</span>
                                 </div>

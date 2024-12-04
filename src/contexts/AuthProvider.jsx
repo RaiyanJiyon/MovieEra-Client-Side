@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import app from "../utils/firebase.config";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 const authContext = createContext(null);
 const auth = getAuth(app);
@@ -11,22 +11,29 @@ const AuthProvider = ({ children }) => {
 
     const createUserWithEmail = (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+        return createUserWithEmailAndPassword(auth, email, password).finally(() => setLoading(false));
     };
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const createUserWithGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider).finally(() => setLoading(false));
+    }
 
     const signInUser = (email, password) => {
         setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
+        return signInWithEmailAndPassword(auth, email, password).finally(() => setLoading(false));
     };
 
     const signOutUser = () => {
         setLoading(true);
-        return signOut(auth);
+        return signOut(auth).finally(() => setLoading(false));
     };
 
     const passwordReset = (email) => {
         setLoading(true);
-        return sendPasswordResetEmail(auth, email);
+        return sendPasswordResetEmail(auth, email).finally(() => setLoading(false));
     };
 
     useEffect(() => {
@@ -34,13 +41,14 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             setLoading(false);
         });
-        return () => unsubscribe(); 
+        return () => unsubscribe();
     }, []);
 
     const authInfo = {
         user,
         setUser,
         createUserWithEmail,
+        createUserWithGoogle,
         signInUser,
         signOutUser,
         passwordReset,
@@ -53,4 +61,4 @@ const AuthProvider = ({ children }) => {
     );
 };
 
-export  {AuthProvider, authContext};
+export { AuthProvider, authContext };

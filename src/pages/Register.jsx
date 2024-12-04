@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
-import logo from '../assets/icons/logo.png'
+import logo from '../assets/icons/logo.png';
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../contexts/AuthProvider";
 import ErrorToaster from "../components/Toaster/ErrorToaster";
@@ -14,13 +14,13 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { createUserWithEmail } = useContext(authContext)
+    const { setUser, createUserWithEmail, createUserWithGoogle } = useContext(authContext);
 
     const [passwordToggle, setPasswordToggle] = useState(false);
 
     const handlePasswordToggle = () => {
         setPasswordToggle(prev => !prev);
-    }
+    };
 
     const handleRegisterForm = e => {
         e.preventDefault();
@@ -34,10 +34,6 @@ const Register = () => {
         const photoURL = formData.get('photoURL');
         const password = formData.get('password');
 
-        const userInformation = { name, email, photoURL, password }
-
-        console.log(userInformation);
-
         const validPassword = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
         if (!validPassword.test(password)) {
@@ -47,13 +43,32 @@ const Register = () => {
 
         createUserWithEmail(email, password)
             .then(userCredential => {
-                console.log(userCredential.user);
-                SuccessToaster('Successfully Signed In');
-                form.reset();
-                navigate('/');
+                const user = userCredential.user;
+                user.updateProfile({
+                    displayName: name,
+                    photoURL: photoURL
+                }).then(() => {
+                    SuccessToaster('Successfully Signed In');
+                    setUser({ ...user, displayName: name, photoURL: photoURL });
+                    form.reset();
+                    navigate('/');
+                });
             })
             .catch(error => {
                 console.error(error.message);
+                ErrorToaster(error.message);
+            });
+    };
+
+    const handleGoogleSignUp = () => {
+        createUserWithGoogle()
+            .then(result => {
+                const user = result.user;
+                SuccessToaster("Successfully Sign In with Google");
+                setUser(user);
+                navigate("/");
+            })
+            .catch(error => {
                 ErrorToaster(error.message);
             });
     };
@@ -72,7 +87,7 @@ const Register = () => {
                         </h1>
                         <form onSubmit={handleRegisterForm} className="space-y-4 md:space-y-6">
                             <div className="flex flex-col md:flex-row items-center justify-between gap-2">
-                                <div className="flex items-center md:justify-center gap-2 w-full hover:bg-gray-100 border border-gray-300 px-4 py-2 rounded-lg cursor-pointer">
+                                <div onClick={handleGoogleSignUp} className="flex items-center md:justify-center gap-2 w-full hover:bg-gray-100 border border-gray-300 px-4 py-2 rounded-lg cursor-pointer">
                                     <FaGoogle className="text-xl" />
                                     <span className="text-base font-medium">Sign up with Google</span>
                                 </div>

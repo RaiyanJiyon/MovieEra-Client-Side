@@ -55,7 +55,7 @@ const Login = () => {
                 const user = result.user;
                 SuccessToaster("Successfully Sign In with Google");
                 setUser(user);
-                navigate("/");
+                navigate(location?.state ? location.state : "/");
             })
             .catch(error => {
                 ErrorToaster(error.message);

@@ -1,55 +1,18 @@
-import { useEffect } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useLoaderData, useParams, Link } from "react-router-dom";
 
 const MovieDetails = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     const MovieData = useLoaderData();
-    const navigate = useNavigate();
+    const { id } = useParams();
 
-    const handleDelete = (_id) => {
-        console.log(_id)
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`http://localhost:5000/movies/${MovieData._id}`, {
-                    method: 'DELETE',
-                })
-                    .then((res) => res.json())
-                    .then(data => {
-                        if (data.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your Movie has been deleted.",
-                                icon: "success"
-                            });
-                            navigate('/movies')
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error deleting coffee:", error);
-                        Swal.fire("Error!", "Something went wrong. Please try again.", "error");
-                    });
+    const handleDelete = () => {
+        // Implement delete functionality here
+        console.log("Deleting movie with ID:", id);
+    };
 
-            } else {
-                Swal.fire("Cancelled!", "Your movie is safe.");
-            }
-        });
-    }
-
-    const handleAddToFavorite = (_id) => {
-        console.log('Added to favorite list', _id);
-    }
+    const handleAddToFavourite = () => {
+        // Implement add to favourite functionality here
+        console.log("Adding movie to favourites with ID:", id);
+    };
 
     return (
         <div className="w-11/12 mx-auto mt-10">
@@ -95,17 +58,17 @@ const MovieDetails = () => {
                 </div>
             </div>
             <div className="flex justify-center mt-10 space-x-4">
-                <button
+                <button 
                     className="btn bg-red-600 text-white font-bold"
-                    onClick={() => handleDelete(MovieData._id)}
+                    onClick={handleDelete}
                 >
                     Delete
                 </button>
-                <button
+                <button 
                     className="btn bg-green-600 text-white font-bold"
-                    onClick={() => handleAddToFavorite(MovieData._id)}
+                    onClick={handleAddToFavourite}
                 >
-                    Add to Favorite
+                    Add to Favourite
                 </button>
                 <Link to="/movies" className="btn bg-[#2ce6e6] font-bold">
                     See all movies

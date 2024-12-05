@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import ReactStars from 'react-rating-stars-component';
 import { Link } from "react-router-dom";
 
 const AllMovies = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -30,7 +33,7 @@ const AllMovies = () => {
                         <div key={idx} className="card card-compact text-white shadow-lg rounded-lg overflow-hidden">
                             <figure>
                                 <img
-                                    className="w-full h-[300px] object-cover transition-transform duration-500 ease-in-out transform hover:scale-110"
+                                    className="w-full h-[300px] object-cover lg:object-fill transition-transform duration-500 ease-in-out transform hover:scale-110"
                                     src={movie.moviePoster}
                                     alt={`${movie.movieTitle} poster`} />
                             </figure>

@@ -110,11 +110,11 @@ const Login = () => {
                                         <label htmlFor="remember" className="text-gray-500">Remember me</label>
                                     </div>
                                 </div>
-                                <span onClick={navigateToForgetPassword} className="text-sm font-medium text-[#E50916] hover:underline cursor-pointer">Forgot password?</span>
+                                <span onClick={navigateToForgetPassword} className="text-sm font-medium text-[#2ce6e6] hover:underline cursor-pointer">Forgot password?</span>
                             </div>
                             <Button text='Sign In' />
                             <p className="text-sm font-light text-gray-500">
-                                Don’t have an account yet? <Link to={"/register"} className="font-medium text-[#E50916] hover:underline">Sign up</Link>
+                                Don’t have an account yet? <Link to={"/register"} className="font-medium text-[#2ce6e6] hover:underline">Sign up</Link>
                             </p>
                         </form>
                     </div>

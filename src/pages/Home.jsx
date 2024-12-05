@@ -7,7 +7,7 @@ const Home = () => {
             <div>
                 <Banner />
             </div>
-            <div className="pt-20 bg-[#182031]">
+            <div className="pt-20">
                 <FeaturedMovies />
             </div>
         </div>

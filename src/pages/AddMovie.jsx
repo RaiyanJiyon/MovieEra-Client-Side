@@ -1,10 +1,14 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { validateGreaterThan, validateMinLength, validateNotEmpty, validateURL } from '../utils/validations';
 import Swal from 'sweetalert2';
 import ReactStars from 'react-rating-stars-component';
 import { authContext } from '../contexts/AuthProvider';
 
 const AddMovie = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const { user } = useContext(authContext);
     console.log(user);
 
@@ -74,6 +78,7 @@ const AddMovie = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
+                        e.currentTarget.reset();
                     }
                 })
                 .catch((err) => console.error(err));
@@ -97,7 +102,7 @@ const AddMovie = () => {
                             id="moviePoster"
                             value={movie.moviePoster}
                             onChange={handleChange}
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-red-600 focus:outline-none"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             placeholder="Enter Movie Poster URL"
                             required
                         />
@@ -113,7 +118,7 @@ const AddMovie = () => {
                             id="movieTitle"
                             value={movie.movieTitle}
                             onChange={handleChange}
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-red-600 focus:outline-none"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             placeholder="Enter Movie Title"
                             required
                         />
@@ -128,7 +133,7 @@ const AddMovie = () => {
                             id="genre"
                             value={movie.genre}
                             onChange={handleChange}
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-red-600 focus:outline-none"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             required
                         >
                             <option value="">Select Genre</option>
@@ -148,7 +153,7 @@ const AddMovie = () => {
                             id="duration"
                             value={movie.duration}
                             onChange={handleChange}
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-red-600 focus:outline-none"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             placeholder="Enter Duration"
                             required
                         />
@@ -163,7 +168,7 @@ const AddMovie = () => {
                             id="releaseYear"
                             value={movie.releaseYear}
                             onChange={handleChange}
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-red-600 focus:outline-none"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             required
                         >
                             <option value="">Select Year</option>
@@ -182,7 +187,7 @@ const AddMovie = () => {
                             id="summary"
                             value={movie.summary}
                             onChange={handleChange}
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-red-600 focus:outline-none"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             placeholder="Enter Summary"
                             rows="4"
                             required
@@ -202,7 +207,7 @@ const AddMovie = () => {
                             activeColor="#ffd700"
                         />
                     </div>
-                    <button className="btn bg-[#d10c1a] font-bold w-full text-lg text-white">Save</button>
+                    <button className="btn bg-[#2ce6e6] font-bold w-full text-lg text-white">Save</button>
                 </form>
             </div>
         </div>

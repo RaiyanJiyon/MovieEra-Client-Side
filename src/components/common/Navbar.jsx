@@ -23,14 +23,10 @@ const Navbar = () => {
     }
 
     const links = <>
-        <NavLink to={"/"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-normal'}>Home</NavLink>
-        <NavLink to={"/movies"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-normal'}>All Movies</NavLink>
-        <NavLink to={"/add-movie"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-normal'}>Add Movie</NavLink>
-        <NavLink to={"/favorites"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-normal'}>My Favorites</NavLink>
-        {
-            user &&
-            <NavLink to={"/profile"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-normal'}>My Profile</NavLink>
-        }
+        <NavLink to={"/"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>Home</NavLink>
+        <NavLink to={"/movies"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>All Movies</NavLink>
+        <NavLink to={"/add-movie"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>Add Movie</NavLink>
+        <NavLink to={"/favorites"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>My Favorites</NavLink>
     </>
 
     return (

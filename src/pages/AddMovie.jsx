@@ -202,9 +202,10 @@ const AddMovie = () => {
                             count={5}
                             value={movie.rating}
                             onChange={handleRatingChange}
-                            size={24}
+                            size={40}
                             isHalf={true}
                             activeColor="#ffd700"
+                            required
                         />
                     </div>
                     <button className="btn bg-[#2ce6e6] font-bold w-full text-lg text-white">Save</button>

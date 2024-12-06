@@ -1,82 +1,122 @@
 [
     {
         "posterImage": "https://i.ibb.co.com/vqK49SP/lucky-baskhar.jpg",
-        "posterName": "Lucky Baskhar"
+        "posterName": "Lucky Baskhar",
+        "hits": 152937,
+        "releaseDay": 3
     },
     {
         "posterImage": "https://i.ibb.co.com/zn1Gy19/kanguva.jpg",
-        "posterName": "Kanguva"
+        "posterName": "Kanguva",
+        "hits": 152937,
+        "releaseDay": 5
     },
     {
         "posterImage": "https://i.ibb.co.com/3yBXJ7t/singham-again.jpg",
-        "posterName": "Singham Again"
+        "posterName": "Singham Again",
+        "hits": 15297,
+        "releaseDay": 7
     },
     {
         "posterImage": "https://i.ibb.co.com/5hVGGYP/wwe-survivor-series-wargames-2024.jpg",
-        "posterName": "WWE Survivor Series WarGames (2024)"
+        "posterName": "WWE Survivor Series WarGames (2024)",
+        "hits": 15255,
+        "releaseDay": 2
     },
     {
         "posterImage": "https://i.ibb.co.com/tM6g6f5/sikandar-ka-muqaddar.jpg",
-        "posterName": "Sikandar Ka Muqaddar"
+        "posterName": "Sikandar Ka Muqaddar",
+        "hits": 9937,
+        "releaseDay": 1
     },
     {
         "posterImage": "https://i.ibb.co.com/fXpNbq9/the-sabarmati-report.jpg",
-        "posterName": "The Sabarmati Report"
+        "posterName": "The Sabarmati Report",
+        "hits": 9437,
+        "releaseDay": 4
     },
     {
         "posterImage": "https://i.ibb.co.com/TYyNFRg/vijay-69.jpg",
-        "posterName": "Vijay 69"
+        "posterName": "Vijay 69",
+        "hits": 2937,
+        "releaseDay": 6
     },
     {
         "posterImage": "https://i.ibb.co.com/Bq3MD3f/citadel-honey-bunny-season-01-2024-completed.jpg",
-        "posterName": "Citadel Honey Bunny Season 01 (2024) Completed"
+        "posterName": "Citadel Honey Bunny Season 01 (2024) Completed",
+        "hits": 11937,
+        "releaseDay": 9
     },
     {
         "posterImage": "https://i.ibb.co.com/93VCFYP/bhool-bhulaiyaa-3.jpg",
-        "posterName": "Bhool Bhulaiyaa 3"
+        "posterName": "Bhool Bhulaiyaa 3",
+        "hits": 1344937,
+        "releaseDay": 1
     },
     {
         "posterImage": "https://i.ibb.co.com/RDkKsdH/bagheera-2024.jpg",
-        "posterName": "Bagheera (2024)"
+        "posterName": "Bagheera (2024)",
+        "hits": 15237,
+        "releaseDay": 8
     },
     {
         "posterImage": "https://i.ibb.co.com/9WFH1sH/amaran.jpg",
-        "posterName": "Amaran"
+        "posterName": "Amaran",
+        "hits": 11537,
+        "releaseDay": 3
     },
     {
         "posterImage": "https://i.ibb.co.com/r5KZXg9/venom-the-last-dance.jpg",
-        "posterName": "Venom The Last Dance"
+        "posterName": "Venom The Last Dance",
+        "hits": 252937,
+        "releaseDay": 7
     },
     {
         "posterImage": "https://i.ibb.co.com/ysRJFkp/do-patti.jpg",
-        "posterName": "Do Patti"
+        "posterName": "Do Patti",
+        "hits": 52937,
+        "releaseDay": 2
     },
     {
         "posterImage": "https://i.ibb.co.com/D1P9Hm4/1000-babies-season-01-2024-completed.jpg",
-        "posterName": "1000 Babies Season 01 (2024) Completed"
+        "posterName": "1000 Babies Season 01 (2024) Completed",
+        "hits": 2937,
+        "releaseDay": 6
     },
     {
         "posterImage": "https://i.ibb.co.com/YRL8vpX/vettaiyan.jpg",
-        "posterName": "Vettaiyan"
+        "posterName": "Vettaiyan",
+        "hits": 162937,
+        "releaseDay": 5
     },
     {
         "posterImage": "https://i.ibb.co.com/mDyNTLc/jigra.jpg",
-        "posterName": "Jigra"
+        "posterName": "Jigra",
+        "hits": 12937,
+        "releaseDay": 4
     },
     {
         "posterImage": "https://i.ibb.co.com/G9xNL9F/vicky-vidya-ka-woh-wala-video.jpg",
-        "posterName": "Vicky Vidya Ka Woh Wala Video"
+        "posterName": "Vicky Vidya Ka Woh Wala Video",
+        "hits": 1937,
+        "releaseDay": 2
     },
     {
         "posterImage": "https://i.ibb.co.com/cgshF6j/ctrl.jpg",
-        "posterName": "CTRL"
+        "posterName": "CTRL",
+        "hits": 12293,
+        "releaseDay": 1
     },
     {
         "posterImage": "https://i.ibb.co.com/n0LgCgS/martin.jpg",
-        "posterName": "Martin"
+        "posterName": "Martin",
+        "hits": 1237,
+        "releaseDay": 9
     },
     {
         "posterImage": "https://i.ibb.co.com/tDfP87M/ballistic.jpg",
-        "posterName": "Ballistic"
+        "posterName": "Ballistic",
+        "hits": 1529,
+        "releaseDay": 8
     }
 ]

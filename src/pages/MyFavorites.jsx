@@ -4,6 +4,10 @@ import Swal from "sweetalert2";
 import { FaStar } from "react-icons/fa";
 
 const MyFavorites = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
     const { user } = useContext(authContext);
     const [favorites, setFavorites] = useState([]);
     const [error, setError] = useState(null);

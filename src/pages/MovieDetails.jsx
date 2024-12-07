@@ -72,8 +72,9 @@ const MovieDetails = () => {
         })
     }
 
-    const handleUpdateMovie = () => {
-        
+    const handleUpdateMovie = (_id) => {
+        console.log(_id)
+        navigate(`/update-movie/${_id}`)
     }
 
     return (
@@ -134,7 +135,7 @@ const MovieDetails = () => {
                 </button>
                 <button
                     className="btn bg-yellow-400 text-white font-bold"
-                    onClick={handleUpdateMovie}
+                    onClick={ () => handleUpdateMovie(MovieData._id)}
                 >
                     Update Movie
                 </button>

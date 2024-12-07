@@ -72,6 +72,10 @@ const MovieDetails = () => {
         })
     }
 
+    const handleUpdateMovie = () => {
+        
+    }
+
     return (
         <div className="w-11/12 mx-auto mt-10">
             <h1 className="text-4xl font-bold mb-4 text-center">{MovieData.movieTitle}</h1>
@@ -127,6 +131,12 @@ const MovieDetails = () => {
                     onClick={handleAddToFavorite}
                 >
                     Add to Favorite
+                </button>
+                <button
+                    className="btn bg-yellow-400 text-white font-bold"
+                    onClick={handleUpdateMovie}
+                >
+                    Update Movie
                 </button>
                 <Link to="/movies" className="btn bg-[#2ce6e6] font-bold">
                     See all movies

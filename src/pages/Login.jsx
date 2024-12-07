@@ -112,9 +112,9 @@ const Login = () => {
                                 </div>
                                 <span onClick={navigateToForgetPassword} className="text-sm font-medium text-[#2ce6e6] hover:underline cursor-pointer">Forgot password?</span>
                             </div>
-                            <Button text='Sign In' />
+                            <Button text='Login' />
                             <p className="text-sm font-light text-gray-500">
-                                Don’t have an account yet? <Link to={"/register"} className="font-medium text-[#2ce6e6] hover:underline">Sign up</Link>
+                                Don’t have an account yet? <Link to={"/register"} className="font-medium text-[#2ce6e6] hover:underline">Register</Link>
                             </p>
                         </form>
                     </div>

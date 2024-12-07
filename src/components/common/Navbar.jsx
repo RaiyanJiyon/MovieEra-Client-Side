@@ -79,14 +79,8 @@ const Navbar = () => {
                                 </div>
                                 <ul
                                     tabIndex={0}
-                                    className="menu menu-sm dropdown-content bg-[#E50916] text-white font-bold rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                    <li>
-                                        <Link to={"/profile"} className="justify-between">
-                                            Profile
-                                            <span className="badge">New</span>
-                                        </Link>
-                                    </li>
-                                    <li><Link to={"/profile/update"}>Update Profile</Link></li>
+                                    className="menu menu-sm dropdown-content bg-[#2ce6e6] font-bold rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                    <li className="pl-3">{user.displayName}</li>
                                     <li onClick={handleSignOut}><a>Logout</a></li>
                                 </ul>
                             </div>

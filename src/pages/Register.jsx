@@ -14,7 +14,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { setUser, createUserWithEmail, createUserWithGoogle } = useContext(authContext);
+    const { setUser, createUserWithEmail, createUserWithGoogle, updateUserProfile } = useContext(authContext);
 
     const [passwordToggle, setPasswordToggle] = useState(false);
 
@@ -41,21 +41,17 @@ const Register = () => {
             return;
         }
 
+
         createUserWithEmail(email, password)
             .then(userCredential => {
-                const user = userCredential.user;
-                user.updateProfile({
-                    displayName: name,
-                    photoURL: photoURL
-                }).then(() => {
-                    SuccessToaster('Successfully Signed In');
-                    setUser({ ...user, displayName: name, photoURL: photoURL });
-                    form.reset();
-                    navigate('/');
-                });
+                return updateUserProfile(name, photoURL);
+            })
+            .then(() => {
+                SuccessToaster('Successfully Created Account');
+                form.reset();
+                navigate('/');
             })
             .catch(error => {
-                console.error(error.message);
                 ErrorToaster(error.message);
             });
     };
@@ -104,17 +100,6 @@ const Register = () => {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="photoURL" className="block mb-2 text-sm font-medium text-gray-900">Your photo url</label>
-                                <input
-                                    type="text"
-                                    name="photoURL"
-                                    id="photoURL"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                    placeholder="photo url"
-                                    required
-                                />
-                            </div>
-                            <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
                                 <input
                                     type="email"
@@ -122,6 +107,17 @@ const Register = () => {
                                     id="email"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                                     placeholder="name@company.com"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="photoURL" className="block mb-2 text-sm font-medium text-gray-900">Your photo url</label>
+                                <input
+                                    type="text"
+                                    name="photoURL"
+                                    id="photoURL"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                    placeholder="photo url"
                                     required
                                 />
                             </div>
@@ -139,7 +135,7 @@ const Register = () => {
                                     {passwordToggle ? <FaEyeSlash /> : <FaEye />}
                                 </div>
                             </div>
-                            <Button text={"Create an account"} />
+                            <Button text={"Register"} />
                             <p className="text-sm font-light text-gray-500">
                                 Already have an account? <Link to={"/login"} className="font-medium text-[#2ce6e6] hover:underline">Login here</Link>
                             </p>

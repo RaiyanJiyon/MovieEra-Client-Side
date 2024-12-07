@@ -120,26 +120,26 @@ const MovieDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center mt-10 space-x-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 space-x-4">
                 <button
-                    className="btn bg-red-600 text-white font-bold"
+                    className="btn btn-sm md:btn-md bg-red-600 text-white font-bold"
                     onClick={() => handleDelete(MovieData._id)}
                 >
                     Delete
                 </button>
                 <button
-                    className="btn bg-green-600 text-white font-bold"
+                    className="btn btn-sm md:btn-md bg-green-600 text-white font-bold"
                     onClick={handleAddToFavorite}
                 >
                     Add to Favorite
                 </button>
                 <button
-                    className="btn bg-yellow-400 text-white font-bold"
+                    className="btn btn-sm md:btn-md bg-yellow-400 text-white font-bold"
                     onClick={ () => handleUpdateMovie(MovieData._id)}
                 >
                     Update Movie
                 </button>
-                <Link to="/movies" className="btn bg-[#2ce6e6] font-bold">
+                <Link to="/movies" className="btn btn-sm md:btn-md bg-[#2ce6e6] font-bold">
                     See all movies
                 </Link>
             </div>

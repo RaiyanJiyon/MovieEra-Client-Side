@@ -1,16 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { validateGreaterThan, validateMinLength, validateNotEmpty, validateURL } from '../utils/validations';
 import Swal from 'sweetalert2';
 import ReactStars from 'react-rating-stars-component';
-import { authContext } from '../contexts/AuthProvider';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const UpdateMovie = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    const { user } = useContext(authContext);
     const loaderMovieData = useLoaderData();
     const navigate = useNavigate();
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import SearchBar from "../components/movies/SearchBar";
 
 const AllMovies = () => {
     useEffect(() => {
@@ -8,6 +9,7 @@ const AllMovies = () => {
     }, []);
 
     const [movies, setMovies] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -25,11 +27,19 @@ const AllMovies = () => {
         fetchMovies();
     }, []);
 
+    const filteredMovies = movies.filter(movie => 
+        movie.movieTitle.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className="w-11/12 mx-auto mt-10">
+            <div className="my-10">
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {
-                    movies.map((movie, idx) => (
+                    filteredMovies.map((movie, idx) => (
                         <div key={idx} className="card card-compact text-white shadow-lg rounded-lg overflow-hidden">
                             <figure>
                                 <img
@@ -50,7 +60,7 @@ const AllMovies = () => {
                                     <p className="text-sm text-gray-400 mb-2">Duration: {movie.duration} mins</p>
                                     <p className="text-sm text-gray-400 mb-2">Release Year: {movie.releaseYear}</p>
                                 </div>
-                                    <p className="text-sm text-gray-400 mb-2">{movie.summary}</p>
+                                <p className="text-sm text-gray-400 mb-2">{movie.summary}</p>
                                 <Link to={`/movies/${movie._id}`} className="card-actions justify-start mt-4">
                                     <button className="btn bg-[#2ce6e6] text-black font-semibold">See Details</button>
                                 </Link>

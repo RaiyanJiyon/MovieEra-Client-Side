@@ -10,7 +10,7 @@ const Section1 = () => {
                 <div className='md:w-1/2'>
                     <h1 className="text-5xl font-bold">It has never been easier to watch free movies online.</h1>
                     <p className="py-6">
-                        Once you register for a free account with Plex, we’ll keep your place from screen to screen as long as you’re signed in. No matter what device you choose, your free movies will pick up where you left off with ease.
+                        Once you register for a free account with MovieEra, we’ll keep your place from screen to screen as long as you’re signed in. No matter what device you choose, your free movies will pick up where you left off with ease.
                     </p>
                     <button className="btn bg-[#2ce6e6] font-bold">Watch Free</button>
                 </div>

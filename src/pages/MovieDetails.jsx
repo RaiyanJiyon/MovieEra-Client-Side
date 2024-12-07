@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { authContext } from "../contexts/AuthProvider";
 
 const MovieDetails = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
+    const {user} = useContext(authContext);
     const MovieData = useLoaderData();
     const navigate = useNavigate();
 
@@ -47,8 +49,27 @@ const MovieDetails = () => {
         });
     }
 
-    const handleAddToFavorite = (_id) => {
-        console.log('Added to favorite list', _id);
+    const handleAddToFavorite = () => {
+        const favoriteMovie = {...MovieData, email: user.email};
+
+        fetch('http://localhost:5000/favorite', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(favoriteMovie)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data.insertedId) {
+                Swal.fire({
+                    title: "Added!",
+                    text: "Movie has been added to your favorites.",
+                    icon: "success"
+                });
+            }
+        })
     }
 
     return (
@@ -103,7 +124,7 @@ const MovieDetails = () => {
                 </button>
                 <button
                     className="btn bg-green-600 text-white font-bold"
-                    onClick={() => handleAddToFavorite(MovieData._id)}
+                    onClick={handleAddToFavorite}
                 >
                     Add to Favorite
                 </button>

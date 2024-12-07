@@ -55,7 +55,7 @@ const Navbar = () => {
                 </div>
                 <Link to={"/"} className="btn btn-ghost text-xl">
                     <img className="w-8" src={logo} alt="website logo" />
-                    <span>Movie Era</span>
+                    <span>MovieEra</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">

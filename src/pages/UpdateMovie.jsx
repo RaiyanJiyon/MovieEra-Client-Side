@@ -1,51 +1,82 @@
 import { useEffect, useState } from 'react';
-import { validateGreaterThan, validateMinLength, validateNotEmpty, validateURL } from '../utils/validations';
-import Swal from 'sweetalert2';
-import ReactStars from 'react-rating-stars-component';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import Select from 'react-select';
+import ReactStars from 'react-rating-stars-component';
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js';
+import { validateGreaterThan, validateMinLength, validateNotEmpty, validateURL } from '../utils/validations';
 
 const UpdateMovie = () => {
+    const loaderMovieData = useLoaderData();
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Scroll to top on component mount
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-    const loaderMovieData = useLoaderData();
-    const navigate = useNavigate();
 
+    // Initialize movie state with loader data
     const [movie, setMovie] = useState({
-        moviePoster: loaderMovieData.moviePoster,
-        movieTitle: loaderMovieData.movieTitle,
-        genre: loaderMovieData.genre,
-        duration: loaderMovieData.duration,
-        releaseYear: loaderMovieData.releaseYear,
-        summary: loaderMovieData.summary,
-        rating: loaderMovieData.rating
+        ...loaderMovieData,
+        genre: loaderMovieData.genre || []
     });
+
+    // Error state
     const [errors, setErrors] = useState({});
 
-    const genres = ["Comedy", "Drama", "Horror", "Fantasy", "Action", "Sci-Fi"];
+    // Available options
+    const genres = [
+        { label: "Comedy", value: "Comedy" },
+        { label: "Drama", value: "Drama" },
+        { label: "Horror", value: "Horror" },
+        { label: "Fantasy", value: "Fantasy" },
+        { label: "Action", value: "Action" },
+        { label: "Thriller", value: "Thriller" },
+        { label: "Sci-Fi", value: "Sci-Fi" }
+    ];
     const years = [2024, 2023, 2022, 2021, 2020];
 
+    // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setMovie({ ...movie, [name]: value });
+        setMovie(prev => ({ ...prev, [name]: value }));
+        // Clear error for this field when user starts typing
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: null }));
+        }
     };
 
+    // Handle genre selection
+    const handleGenreChange = (selectedOptions) => {
+        const selectedGenres = selectedOptions ? selectedOptions.map(option => option.value) : [];
+        setMovie(prev => ({ ...prev, genre: selectedGenres }));
+        if (errors.genre) {
+            setErrors(prev => ({ ...prev, genre: null }));
+        }
+    };
+
+    // Handle rating change
     const handleRatingChange = (newRating) => {
-        setMovie({ ...movie, rating: newRating });
+        setMovie(prev => ({ ...prev, rating: newRating }));
+        if (errors.rating) {
+            setErrors(prev => ({ ...prev, rating: null }));
+        }
     };
 
-    const handleSubmit = (e) => {
+    // Form submission
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = {};
 
+        // Validate all fields
         if (!validateURL(movie.moviePoster)) {
             validationErrors.moviePoster = 'Please enter a valid URL';
         }
         if (!validateNotEmpty(movie.movieTitle) || !validateMinLength(movie.movieTitle, 2)) {
             validationErrors.movieTitle = 'Title must be at least 2 characters long';
         }
-        if (!validateNotEmpty(movie.genre)) {
-            validationErrors.genre = 'Genre is required';
+        if (!movie.genre || movie.genre.length === 0) {
+            validationErrors.genre = 'At least one genre must be selected';
         }
         if (!validateNotEmpty(movie.duration) || !validateGreaterThan(movie.duration, 60)) {
             validationErrors.duration = 'Duration must be greater than 60 minutes';
@@ -63,28 +94,44 @@ const UpdateMovie = () => {
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            fetch(`http://localhost:5000/movies/${loaderMovieData._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(movie)
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.modifiedCount > 0) {
-                        Swal.fire({
-                            position: "top-center",
-                            icon: "success",
-                            title: "Movie Details have been updated",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/movies')
+            setIsLoading(true);
+            try {
+                const response = await fetch(`http://localhost:5000/movies/${loaderMovieData._id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(movie)
+                });
 
-                    }
-                })
-                .catch((err) => console.error(err));
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+
+                if (data.modifiedCount > 0) {
+                    await Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Movie Details have been updated",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate('/movies');
+                } else {
+                    throw new Error('Update was not successful');
+                }
+            } catch (error) {
+                console.error('Update failed:', error);
+                await Swal.fire({
+                    icon: "error",
+                    title: "Update Failed",
+                    text: "Failed to update movie details. Please try again.",
+                });
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
@@ -95,6 +142,7 @@ const UpdateMovie = () => {
                 <p className="font-medium text-center">Use the form below to update the movie details</p>
 
                 <form onSubmit={handleSubmit} className="space-y-4 mt-6">
+                    {/* Movie Poster URL */}
                     <div>
                         <label htmlFor="moviePoster" className="block text-sm font-medium text-gray-700">
                             Movie Poster URL
@@ -107,10 +155,11 @@ const UpdateMovie = () => {
                             onChange={handleChange}
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             placeholder="Enter Movie Poster URL"
-                            required
                         />
                         {errors.moviePoster && <p className="text-red-500 text-sm">{errors.moviePoster}</p>}
                     </div>
+
+                    {/* Movie Title */}
                     <div>
                         <label htmlFor="movieTitle" className="block text-sm font-medium text-gray-700">
                             Movie Title
@@ -123,29 +172,28 @@ const UpdateMovie = () => {
                             onChange={handleChange}
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             placeholder="Enter Movie Title"
-                            required
                         />
                         {errors.movieTitle && <p className="text-red-500 text-sm">{errors.movieTitle}</p>}
                     </div>
+
+                    {/* Genre Selection */}
                     <div>
                         <label htmlFor="genre" className="block text-sm font-medium text-gray-700">
                             Genre
                         </label>
-                        <select
+                        <Select
+                            isMulti
                             name="genre"
-                            id="genre"
-                            value={movie.genre}
-                            onChange={handleChange}
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
-                            required
-                        >
-                            <option value="">Select Genre</option>
-                            {genres.map((genre, index) => (
-                                <option key={index} value={genre}>{genre}</option>
-                            ))}
-                        </select>
+                            options={genres}
+                            value={genres.filter(g => movie.genre.includes(g.value))}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            onChange={handleGenreChange}
+                        />
                         {errors.genre && <p className="text-red-500 text-sm">{errors.genre}</p>}
                     </div>
+
+                    {/* Duration */}
                     <div>
                         <label htmlFor="duration" className="block text-sm font-medium text-gray-700">
                             Duration (minutes)
@@ -158,10 +206,12 @@ const UpdateMovie = () => {
                             onChange={handleChange}
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             placeholder="Enter Duration"
-                            required
+                            min="60"
                         />
                         {errors.duration && <p className="text-red-500 text-sm">{errors.duration}</p>}
                     </div>
+
+                    {/* Release Year */}
                     <div>
                         <label htmlFor="releaseYear" className="block text-sm font-medium text-gray-700">
                             Release Year
@@ -172,15 +222,16 @@ const UpdateMovie = () => {
                             value={movie.releaseYear}
                             onChange={handleChange}
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
-                            required
                         >
                             <option value="">Select Year</option>
-                            {years.map((year, index) => (
-                                <option key={index} value={year}>{year}</option>
+                            {years.map((year) => (
+                                <option key={year} value={year}>{year}</option>
                             ))}
                         </select>
                         {errors.releaseYear && <p className="text-red-500 text-sm">{errors.releaseYear}</p>}
                     </div>
+
+                    {/* Summary */}
                     <div>
                         <label htmlFor="summary" className="block text-sm font-medium text-gray-700">
                             Summary
@@ -193,10 +244,11 @@ const UpdateMovie = () => {
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
                             placeholder="Enter Summary"
                             rows="4"
-                            required
                         ></textarea>
                         {errors.summary && <p className="text-red-500 text-sm">{errors.summary}</p>}
                     </div>
+
+                    {/* Rating */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
                             Rating
@@ -208,11 +260,18 @@ const UpdateMovie = () => {
                             size={40}
                             isHalf={true}
                             activeColor="#ffd700"
-                            required
                         />
                         {errors.rating && <p className="text-red-500 text-sm">{errors.rating}</p>}
                     </div>
-                    <button className="btn bg-[#2ce6e6] font-bold w-full text-lg text-white">Update</button>
+
+                    {/* Submit Button */}
+                    <button 
+                        type="submit"
+                        disabled={isLoading}
+                        className={`btn bg-[#2ce6e6] font-bold w-full text-lg text-white ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                        {isLoading ? 'Updating...' : 'Update'}
+                    </button>
                 </form>
             </div>
         </div>

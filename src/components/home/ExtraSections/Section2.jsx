@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const Section2 = () => {
     return (
         <div className="w-11/12 mx-auto">
-            <h2 data-aos="fade-up" className="text-3xl text-[#2ce6e6] font-bold text-left">Frequently Asked Questions</h2>
+            <h2 className="text-2xl text-[#1f9797] font-bold text-left">Frequently Asked Questions</h2>
 
             <div className='mt-10 space-y-4'>
                 <Accordion>

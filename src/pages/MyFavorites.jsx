@@ -87,7 +87,14 @@ const MyFavorites = () => {
                                             <FaStar className="text-orange-400" />
                                             <p className="text-gray-400">{`${movie.rating || 0}/5`}</p>
                                         </div>
-                                        <span className="text-sm text-gray-400 ml-14">{movie.genre || "Unknown"}</span>
+                                        <div className="text-sm text-gray-400 ml-14">
+                                            {
+                                                Array.isArray(movie.genre) 
+                                                ? movie.genre.join(', ')
+                                                : movie.genre
+                                            }
+
+                                        </div>
                                     </div>
                                     <div className="flex justify-between items-center">
                                         <p className="text-sm text-gray-400 mb-2">Duration: {movie.duration || "Unknown"} mins</p>

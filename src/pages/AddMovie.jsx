@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import ReactStars from 'react-rating-stars-component';
 import { authContext } from '../contexts/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 
 const AddMovie = () => {
     useEffect(() => {
@@ -16,7 +17,7 @@ const AddMovie = () => {
     const [movie, setMovie] = useState({
         moviePoster: '',
         movieTitle: '',
-        genre: '',
+        genre: [],
         duration: '',
         releaseYear: '',
         summary: '',
@@ -24,12 +25,25 @@ const AddMovie = () => {
     });
     const [errors, setErrors] = useState({});
 
-    const genres = ["Comedy", "Drama", "Horror", "Fantasy", "Action", "Sci-Fi"];
+    const genres = [
+        { label: "Comedy", value: "Comedy" },
+        { label: "Drama", value: "Drama" },
+        { label: "Horror", value: "Horror" },
+        { label: "Fantasy", value: "Fantasy" },
+        { label: "Action", value: "Action" },
+        { label: "Thriller", value: "Thriller" },
+        { label: "Sci-Fi", value: "Sci-Fi" }
+    ];
+
     const years = [2024, 2023, 2022, 2021, 2020];
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setMovie({ ...movie, [name]: value });
+    };
+
+    const handleGenreChange = (selectedOptions) => {
+        setMovie({ ...movie, genre: selectedOptions.map(option => option.value) });
     };
 
     const handleRatingChange = (newRating) => {
@@ -47,7 +61,7 @@ const AddMovie = () => {
             validationErrors.movieTitle = 'Title must be at least 2 characters long';
         }
         if (!validateNotEmpty(movie.genre)) {
-            validationErrors.genre = 'Genre is required';
+            validationErrors.genre = 'At least one genre must be selected';
         }
         if (!validateNotEmpty(movie.duration) || !validateGreaterThan(movie.duration, 60)) {
             validationErrors.duration = 'Duration must be greater than 60 minutes';
@@ -82,13 +96,12 @@ const AddMovie = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        navigate('/movies')
+                        navigate('/movies');
                     }
                 })
                 .catch((err) => console.error(err));
         }
     };
-
 
     return (
         <div className="w-11/12 mx-auto">
@@ -133,19 +146,14 @@ const AddMovie = () => {
                         <label htmlFor="genre" className="block text-sm font-medium text-gray-700">
                             Genre
                         </label>
-                        <select
+                        <Select
+                            isMulti
                             name="genre"
-                            id="genre"
-                            value={movie.genre}
-                            onChange={handleChange}
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 focus:ring focus:ring-[#2ce6e6] focus:outline-none"
-                            required
-                        >
-                            <option value="">Select Genre</option>
-                            {genres.map((genre, index) => (
-                                <option key={index} value={genre}>{genre}</option>
-                            ))}
-                        </select>
+                            options={genres}
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            onChange={handleGenreChange}
+                        />
                         {errors.genre && <p className="text-red-500 text-sm">{errors.genre}</p>}
                     </div>
                     <div>

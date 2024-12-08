@@ -1,11 +1,5 @@
 [
     {
-        "title": "Mission: Impossible – The Final Reckoning Official Teaser Trailer",
-        "image": "https://i.ibb.co/S300kFR/Mission-Impossible-The-Final-Reckoning-Trailer-Image-01.webp",
-        "description": "Our lives are the sum of our choices as Paramount Pictures releases the official teaser trailer for their upcoming action-adventure blockbuster sequel film, Mission: Impossible – The Final Reckoning. This is the 8th entry in the long-running Mission Impossible franchise, which follows Ethan Hunt and his team as they thwart the global threat of a self-aware AI intelligence. Familiar faces return, new characters appear, and it looks to be the biggest adventure yet. I’m excited to see what the eighth installment will bring!",
-        "trailer": "https://www.youtube.com/embed/NOhDyUmT9z0?si=sfWEiLnjlV3ht5Q2"
-    },
-    {
         "title": "Captain America: Brave New World Official Trailer",
         "image": "https://i.ibb.co.com/tmBYT32/Cap-1.webp",
         "description": "Marvel Studios has unveiled the official trailer for 'Captain America: Brave New World,' marking the next chapter in the superhero saga. The movie continues Sam Wilson's journey as the new Captain America, facing political intrigue and a powerful new enemy. With stunning visuals and high-stakes action, the film promises to be a thrilling addition to the MCU.",
@@ -34,5 +28,11 @@
         "image": "https://i.ibb.co.com/G5frXvP/vz-Vojq-W0z-F9-Qr-XVGuj8-Pwhx-WACD-e1727100646146.webp",
         "description": "Marvel Studios introduces 'Thunderbolts,' an ensemble film that brings together a team of anti-heroes and reformed villains. The teaser trailer hints at a gritty, action-packed storyline filled with unexpected alliances and moral ambiguity.",
         "trailer": "https://youtu.be/v-94Snw-H4o?si=uepR43QbnYi4Owb9"
+    },
+    {
+        "title": "Mission: Impossible – The Final Reckoning Official Teaser Trailer",
+        "image": "https://i.ibb.co/S300kFR/Mission-Impossible-The-Final-Reckoning-Trailer-Image-01.webp",
+        "description": "Our lives are the sum of our choices as Paramount Pictures releases the official teaser trailer for their upcoming action-adventure blockbuster sequel film, Mission: Impossible – The Final Reckoning. This is the 8th entry in the long-running Mission Impossible franchise, which follows Ethan Hunt and his team as they thwart the global threat of a self-aware AI intelligence. Familiar faces return, new characters appear, and it looks to be the biggest adventure yet. I’m excited to see what the eighth installment will bring!",
+        "trailer": "https://www.youtube.com/embed/NOhDyUmT9z0?si=sfWEiLnjlV3ht5Q2"
     }
 ]

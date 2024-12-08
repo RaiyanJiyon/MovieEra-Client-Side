@@ -76,8 +76,8 @@ const MyFavorites = () => {
                                 <figure>
                                     <img
                                         className="w-full h-[300px] object-cover lg:object-fill transition-transform duration-500 ease-in-out transform hover:scale-110"
-                                        src={movie.moviePoster || "placeholder-image-url.jpg"} // Use a placeholder image if moviePoster is missing
-                                        alt={`${movie.movieTitle || "No Title"} poster`} // Fallback for missing title
+                                        src={movie.moviePoster || "placeholder-image-url.jpg"}
+                                        alt={`${movie.movieTitle || "No Title"} poster`}
                                     />
                                 </figure>
                                 <div className="card-body p-4 text-black">

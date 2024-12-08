@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import phoneImg from '../../../assets/images/phone.png'
 
 const Section1 = () => {
@@ -12,7 +13,9 @@ const Section1 = () => {
                     <p className="py-6">
                         Once you register for a free account with MovieEra, we’ll keep your place from screen to screen as long as you’re signed in. No matter what device you choose, your free movies will pick up where you left off with ease.
                     </p>
-                    <button className="btn bg-[#2ce6e6] font-bold">Watch Free</button>
+                    <Link to={'/movies'}>
+                        <button className="btn bg-[#2ce6e6] font-bold">Watch Free</button>
+                    </Link>
                 </div>
             </div>
         </div>

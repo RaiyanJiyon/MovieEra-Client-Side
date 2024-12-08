@@ -8,7 +8,7 @@ const MovieDetails = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const {user} = useContext(authContext);
+    const { user } = useContext(authContext);
     const MovieData = useLoaderData();
     const navigate = useNavigate();
 
@@ -48,29 +48,53 @@ const MovieDetails = () => {
             }
         });
     }
-
     const handleAddToFavorite = () => {
-        const favoriteMovie = {...MovieData, email: user.email};
+        // eslint-disable-next-line no-unused-vars
+        const { _id, ...movieWithoutId } = MovieData;
+        const favoriteMovie = { ...movieWithoutId, email: user.email };
 
-        fetch('https://movie-era-server.vercel.app/favorite', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(favoriteMovie)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if (data.insertedId) {
-                Swal.fire({
-                    title: "Added!",
-                    text: "Movie has been added to your favorites.",
-                    icon: "success"
-                });
-            }
-        })
+        fetch(`https://movie-era-server.vercel.app/favorite/${user.email}`)
+            .then(res => res.json())
+            .then(favorites => {
+                const isAlreadyFavorite = favorites.some(fav => fav.movieTitle === favoriteMovie.movieTitle);
+
+                if (isAlreadyFavorite) {
+                    Swal.fire({
+                        title: "Already Added!",
+                        text: "This movie is already in your favorites.",
+                        icon: "info"
+                    });
+                } else {
+                    fetch('https://movie-era-server.vercel.app/favorite', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(favoriteMovie)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                Swal.fire({
+                                    title: "Added!",
+                                    text: "Movie has been added to your favorites.",
+                                    icon: "success"
+                                });
+                            }
+                        })
+                        .catch(err => {
+                            console.error('Add to favorite failed:', err);
+                            Swal.fire("Error!", "Something went wrong. Please try again.", "error");
+                        });
+                }
+            })
+            .catch(err => {
+                console.error('Fetch favorites failed:', err);
+                Swal.fire("Error!", "Something went wrong. Please try again.", "error");
+            });
     }
+
+
 
     const handleUpdateMovie = (_id) => {
         console.log(_id)
@@ -135,18 +159,18 @@ const MovieDetails = () => {
                 </button>
                 <button
                     className="btn btn-sm md:btn-md bg-yellow-400 text-white font-bold"
-                    onClick={ () => handleUpdateMovie(MovieData._id)}
+                    onClick={() => handleUpdateMovie(MovieData._id)}
                 >
                     Update Movie
                 </button>
             </div>
 
             <Link to="/movies" className="flex justify-center mt-10">
-                <button className="btn btn-sm md:btn-md bg-[#2ce6e6] text-white font-bold">
+                <button className="btn btn-sm md:btn-md bg-[#2ce6e6] font-bold">
                     See all movies
                 </button>
             </Link>
-            
+
         </div>
     );
 };

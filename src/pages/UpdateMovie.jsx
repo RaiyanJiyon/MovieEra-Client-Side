@@ -10,21 +10,17 @@ const UpdateMovie = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
-    // Scroll to top on component mount
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    // Initialize movie state with loader data
     const [movie, setMovie] = useState({
         ...loaderMovieData,
         genre: loaderMovieData.genre || []
     });
 
-    // Error state
     const [errors, setErrors] = useState({});
 
-    // Available options
     const genres = [
         { label: "Comedy", value: "Comedy" },
         { label: "Drama", value: "Drama" },
@@ -36,7 +32,6 @@ const UpdateMovie = () => {
     ];
     const years = [2024, 2023, 2022, 2021, 2020];
 
-    // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setMovie(prev => ({ ...prev, [name]: value }));
@@ -46,7 +41,6 @@ const UpdateMovie = () => {
         }
     };
 
-    // Handle genre selection
     const handleGenreChange = (selectedOptions) => {
         const selectedGenres = selectedOptions ? selectedOptions.map(option => option.value) : [];
         setMovie(prev => ({ ...prev, genre: selectedGenres }));
@@ -55,7 +49,6 @@ const UpdateMovie = () => {
         }
     };
 
-    // Handle rating change
     const handleRatingChange = (newRating) => {
         setMovie(prev => ({ ...prev, rating: newRating }));
         if (errors.rating) {
@@ -63,12 +56,10 @@ const UpdateMovie = () => {
         }
     };
 
-    // Form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = {};
 
-        // Validate all fields
         if (!validateURL(movie.moviePoster)) {
             validationErrors.moviePoster = 'Please enter a valid URL';
         }

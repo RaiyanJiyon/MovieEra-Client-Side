@@ -2,7 +2,7 @@
 Your ultimate movie portal to explore, manage, and favorite your preferred films.
 
 ## Live Site 🌐  
-[Visit MovieEra](https://your-live-site-url.com)
+[Visit MovieEra](https://movie-era-dc403.web.app/)
 
 ## Features ✨  
 - **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.  

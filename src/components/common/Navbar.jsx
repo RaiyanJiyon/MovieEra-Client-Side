@@ -98,8 +98,8 @@ const Navbar = () => {
                             </div>
                             :
                             <div className="space-x-2">
-                                <Link to={"/login"} className="px-4 py-1 rounded-3xl bg-black text-white font-semibold border-2 border-[#F15E75] hover:bg-white hover:text-black">Login</Link>
-                                <Link to={"/register"} className="hidden sm:inline px-4 py-1 rounded-3xl bg-black text-white font-semibold border-2 border-[#F15E75] hover:bg-white hover:text-black">Register</Link>
+                                <Link to={"/login"} className="px-4 py-1 rounded-3xl bg-black text-white font-semibold hover:bg-white hover:text-black">Login</Link>
+                                <Link to={"/register"} className="hidden sm:inline px-4 py-1 rounded-3xl bg-black text-white font-semibold hover:bg-white hover:text-black">Register</Link>
                             </div>
                     }
                 </div>

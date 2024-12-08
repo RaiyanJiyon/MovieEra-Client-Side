@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { authContext } from "../../contexts/AuthProvider";
 import logo from '../../assets/icons/logo.png'
@@ -7,6 +7,7 @@ import ErrorToaster from "../Toaster/ErrorToaster";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
+    const [isHovered, setIsHovered] = useState(false);
     const { user, signOutUser } = useContext(authContext);
     const navigate = useNavigate();
 
@@ -70,7 +71,16 @@ const Navbar = () => {
                     <ThemeToggle />
                     {
                         user ?
-                            <div className="dropdown dropdown-end">
+                            <div className="relative dropdown dropdown-end"
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
+                            >
+                                {
+                                    isHovered && user && (
+                                        <div className="absolute right-14 p-2 bg-gray-800 text-white rounded-lg shadow-lg z-10"> {user.displayName} </div>
+                                    )
+
+                                }
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
                                         <img
@@ -81,7 +91,8 @@ const Navbar = () => {
                                 <ul
                                     tabIndex={0}
                                     className="menu menu-sm dropdown-content bg-[#2ce6e6] font-bold rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                    <li className="pl-3">{user.displayName}</li>
+                                    <li className="cursor-none"><a>Profile</a></li>
+                                    <li className="cursor-none"><a>Update Profile</a></li>
                                     <li onClick={handleSignOut}><a>Logout</a></li>
                                 </ul>
                             </div>

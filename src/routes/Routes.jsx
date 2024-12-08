@@ -11,6 +11,7 @@ import Register from '../pages/Register';
 import NotFound from '../pages/NotFound';
 import PrivateRoute from './PrivateRoute';
 import ForgotPassword from '../pages/ForgotPassword';
+import Blogs from '../components/common/Blogs';
 
 const router = createBrowserRouter([
     {
@@ -27,9 +28,13 @@ const router = createBrowserRouter([
                 element: <AllMovies />
             },
             {
+                path: '/blogs',
+                loader: () => fetch('/data/blogs.json'),
+                element: <Blogs />
+            },
+            {
                 path: '/movies/:id',
                 element: <MovieDetails />,
-                // loader: ({ params }) => fetch(`/movies/${params.id}`)
                 loader: ({ params }) => fetch(`http://localhost:5000/movies/${params.id}`)
             },
             {

@@ -3,6 +3,7 @@ import { validateGreaterThan, validateMinLength, validateNotEmpty, validateURL }
 import Swal from 'sweetalert2';
 import ReactStars from 'react-rating-stars-component';
 import { authContext } from '../contexts/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const AddMovie = () => {
     useEffect(() => {
@@ -10,7 +11,7 @@ const AddMovie = () => {
     }, []);
 
     const { user } = useContext(authContext);
-    console.log(user);
+    const navigate = useNavigate();
 
     const [movie, setMovie] = useState({
         moviePoster: '',
@@ -57,6 +58,9 @@ const AddMovie = () => {
         if (!validateNotEmpty(movie.summary) || !validateMinLength(movie.summary, 10)) {
             validationErrors.summary = 'Summary must be at least 10 characters long';
         }
+        if (!movie.rating || movie.rating === 0) {
+            validationErrors.rating = 'Rating is required';
+        }
 
         setErrors(validationErrors);
 
@@ -78,12 +82,13 @@ const AddMovie = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        e.currentTarget.reset();
+                        navigate('/movies')
                     }
                 })
                 .catch((err) => console.error(err));
         }
     };
+
 
     return (
         <div className="w-11/12 mx-auto">
@@ -207,6 +212,7 @@ const AddMovie = () => {
                             activeColor="#ffd700"
                             required
                         />
+                        {errors.rating && <p className="text-red-500 text-sm">{errors.rating}</p>}
                     </div>
                     <button className="btn bg-[#2ce6e6] font-bold w-full text-lg text-white">Save</button>
                 </form>

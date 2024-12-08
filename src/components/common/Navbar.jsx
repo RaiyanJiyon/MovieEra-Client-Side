@@ -15,7 +15,7 @@ const Navbar = () => {
             .then(() => {
                 console.log("Log out successfully");
                 SuccessToaster("Log out successfully");
-                navigate("/");
+                navigate("/login");
             })
             .catch(error => {
                 console.error(error.message);
@@ -26,6 +26,7 @@ const Navbar = () => {
     const links = <>
         <NavLink to={"/"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>Home</NavLink>
         <NavLink to={"/movies"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>All Movies</NavLink>
+        <NavLink to={"/blogs"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>Blogs</NavLink>
         <NavLink to={"/add-movie"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>Add Movie</NavLink>
         <NavLink to={"/favorites"} className={({ isActive }) => isActive ? 'font-bold underline' : 'font-bold'}>My Favorites</NavLink>
     </>

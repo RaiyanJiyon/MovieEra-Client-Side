@@ -68,37 +68,45 @@ const MyFavorites = () => {
 
     return (
         <div className="w-11/12 mx-auto mt-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {favorites.map((movie, idx) => (
-                    <div key={idx} className="card card-compact text-white shadow-lg rounded-lg overflow-hidden">
-                        <figure>
-                            <img
-                                className="w-full h-[300px] object-cover lg:object-fill transition-transform duration-500 ease-in-out transform hover:scale-110"
-                                src={movie.moviePoster}
-                                alt={`${movie.movieTitle} poster`}
-                            />
-                        </figure>
-                        <div className="card-body p-4 text-black">
-                            <h2 className="card-title text-black text-2xl font-bold mb-2">{movie.movieTitle}</h2>
-                            <div className="flex justify-start items-center">
-                                <div className="flex items-center gap-2">
-                                    <FaStar className="text-orange-400" />
-                                    <p className="text-gray-400">{`${movie.rating}/5`}</p>
+            {favorites.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    {favorites.map((movie, idx) => (
+                        movie && (
+                            <div key={idx} className="card card-compact text-white shadow-lg rounded-lg overflow-hidden">
+                                <figure>
+                                    <img
+                                        className="w-full h-[300px] object-cover lg:object-fill transition-transform duration-500 ease-in-out transform hover:scale-110"
+                                        src={movie.moviePoster || "placeholder-image-url.jpg"} // Use a placeholder image if moviePoster is missing
+                                        alt={`${movie.movieTitle || "No Title"} poster`} // Fallback for missing title
+                                    />
+                                </figure>
+                                <div className="card-body p-4 text-black">
+                                    <h2 className="card-title text-black text-2xl font-bold mb-2">{movie.movieTitle || "No Title"}</h2>
+                                    <div className="flex justify-start items-center">
+                                        <div className="flex items-center gap-2">
+                                            <FaStar className="text-orange-400" />
+                                            <p className="text-gray-400">{`${movie.rating || 0}/5`}</p>
+                                        </div>
+                                        <span className="text-sm text-gray-400 ml-14">{movie.genre || "Unknown"}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center">
+                                        <p className="text-sm text-gray-400 mb-2">Duration: {movie.duration || "Unknown"} mins</p>
+                                        <p className="text-sm text-gray-400 mb-2">Release Year: {movie.releaseYear || "Unknown"}</p>
+                                    </div>
+                                    <p className="text-sm text-gray-400 mb-2">{movie.summary || "No Summary Available"}</p>
+                                    <div className="card-actions justify-start mt-4">
+                                        <button onClick={() => handleDeleteFavorite(movie._id)} className="btn bg-red-600 text-white font-bold">Delete Favorite</button>
+                                    </div>
                                 </div>
-                                <span className="text-sm text-gray-400 ml-14">{movie.genre}</span>
                             </div>
-                            <div className="flex justify-between items-center">
-                                <p className="text-sm text-gray-400 mb-2">Duration: {movie.duration} mins</p>
-                                <p className="text-sm text-gray-400 mb-2">Release Year: {movie.releaseYear}</p>
-                            </div>
-                            <p className="text-sm text-gray-400 mb-2">{movie.summary}</p>
-                            <div className="card-actions justify-start mt-4">
-                                <button onClick={() => handleDeleteFavorite(movie._id)} className="btn bg-red-600 text-white font-bold">Delete Favorite</button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+                        )
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center text-gray-600 text-xl font-bold">
+                    Your favorite list is empty.
+                </div>
+            )}
         </div>
     );
 };

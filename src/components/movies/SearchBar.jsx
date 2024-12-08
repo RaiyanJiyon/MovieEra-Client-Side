@@ -1,5 +1,5 @@
-const SearchBar = ({searchTerm, setSearchTerm}) => {
-    const handleInputChange  = (e) => {
+const SearchBar = ({ searchTerm, setSearchTerm }) => {
+    const handleInputChange = (e) => {
         setSearchTerm(e.target.value)
     }
 

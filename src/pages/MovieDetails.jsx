@@ -120,7 +120,7 @@ const MovieDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 space-x-4">
+            <div className="flex flex-col sm:flex-row sm:justify-center gap-6 mt-10 w-11/12 mx-auto sm:w-full">
                 <button
                     className="btn btn-sm md:btn-md bg-red-600 text-white font-bold"
                     onClick={() => handleDelete(MovieData._id)}
@@ -139,10 +139,14 @@ const MovieDetails = () => {
                 >
                     Update Movie
                 </button>
-                <Link to="/movies" className="btn btn-sm md:btn-md bg-[#2ce6e6] font-bold">
-                    See all movies
-                </Link>
             </div>
+
+            <Link to="/movies" className="flex justify-center mt-10">
+                <button className="btn btn-sm md:btn-md bg-[#2ce6e6] text-white font-bold">
+                    See all movies
+                </button>
+            </Link>
+            
         </div>
     );
 };

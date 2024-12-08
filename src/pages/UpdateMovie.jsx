@@ -56,6 +56,9 @@ const UpdateMovie = () => {
         if (!validateNotEmpty(movie.summary) || !validateMinLength(movie.summary, 10)) {
             validationErrors.summary = 'Summary must be at least 10 characters long';
         }
+        if (!movie.rating || movie.rating === 0) {
+            validationErrors.rating = 'Rating is required';
+        }
 
         setErrors(validationErrors);
 
@@ -67,21 +70,21 @@ const UpdateMovie = () => {
                 },
                 body: JSON.stringify(movie)
             })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount > 0) {
-                    Swal.fire({
-                        position: "top-center",
-                        icon: "success",
-                        title: "Movie Details have been updated",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    navigate('/movies')
-                    
-                }
-            })
-            .catch((err) => console.error(err));
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.modifiedCount > 0) {
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "Movie Details have been updated",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/movies')
+
+                    }
+                })
+                .catch((err) => console.error(err));
         }
     };
 
@@ -207,6 +210,7 @@ const UpdateMovie = () => {
                             activeColor="#ffd700"
                             required
                         />
+                        {errors.rating && <p className="text-red-500 text-sm">{errors.rating}</p>}
                     </div>
                     <button className="btn bg-[#2ce6e6] font-bold w-full text-lg text-white">Update</button>
                 </form>

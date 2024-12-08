@@ -20,10 +20,10 @@ const Footer = () => {
                         <a className="link link-hover text-sm pt-2">Returns</a>
                     </nav>
                     <nav className='flex flex-col text-[#09080F99]'>
-                        <h6 className="text-[#09080F] text-lg font-bold">Company</h6>
-                        <a className="link link-hover text-sm pt-2">About us</a>
-                        <a className="link link-hover text-sm pt-2">Careers</a>
-                        <a className="link link-hover text-sm pt-2">Contact</a>
+                        <h6 className="text-[#09080F] text-lg font-bold">Contact Us</h6>
+                        <a className="link link-hover text-sm pt-2">Addres: My Company,578 Marmora ROAD</a>
+                        <a className="link link-hover text-sm pt-2">800-2345-6789</a>
+                        <a className="link link-hover text-sm pt-2">support@movieera.org</a>
                     </nav>
                     <nav className='flex flex-col text-[#09080F99]'>
                         <h6 className="text-[#09080F] text-lg font-bold">Legal</h6>
@@ -33,7 +33,7 @@ const Footer = () => {
                     </nav>
                     <nav>
                         <h6 className="footer-title">Social</h6>
-                        <div className="grid grid-flow-col gap-4">
+                        <div className="grid grid-flow-col">
                             <Link to={"https://x.com/RaiyanJiyon0"} target="_blank">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

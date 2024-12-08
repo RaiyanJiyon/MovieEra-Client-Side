@@ -19,7 +19,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
                     </svg>
                 </div>
                 <input onChange={handleInputChange} type="search" id="default-search" value={searchTerm} className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search Mockups, Logos..." required />
-                <button type="submit" className="absolute right-2.5 bottom-2.5 bg-[#2ce6e6]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+                <button type="submit" className="absolute right-2.5 bottom-2.5 bg-[#2ce6e6]  focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-4 py-2">Search</button>
             </div>
         </form>
     );

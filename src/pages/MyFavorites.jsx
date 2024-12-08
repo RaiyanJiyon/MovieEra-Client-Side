@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { authContext } from "../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import { FaStar } from "react-icons/fa";
+import MyForm from "../components/forms/MovieForm";
 
 const MyFavorites = () => {
     useEffect(() => {

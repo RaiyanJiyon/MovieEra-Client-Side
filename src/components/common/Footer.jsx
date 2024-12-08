@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <footer className='pb-10'>
-            <div className='w-11/12 mx-auto mt-8 md:mt-20'>
+            <div className='w-11/12 mx-auto mt-8 md:mt-20 dark:text-white'>
                 <div>
                     <h2 className='text-3xl font-bold md:text-center'>Movie Era</h2>
                     <p className='text-[#09080F99] md:text-center mt-3'>Movie Era is a website that promotes and showcases a film, and can be used to communicate with distributors, festivals, and screening organizers.</p>

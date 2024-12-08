@@ -1,10 +1,14 @@
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
     const handleInputChange = (e) => {
-        setSearchTerm(e.target.value)
-    }
+        setSearchTerm(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
 
     return (
-        <form className="max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
             <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

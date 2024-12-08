@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const FeaturedMovies = () => {
     const [movies, setMovies] = useState([]);
@@ -7,7 +9,7 @@ const FeaturedMovies = () => {
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const response = await fetch('/data/banner.json');
+                const response = await fetch('http://localhost:5000/featured-movies');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -15,30 +17,40 @@ const FeaturedMovies = () => {
                 setMovies(data);
             } catch (error) {
                 console.error('Fetch error:', error);
-                setError(error.message);
             }
         };
         fetchMovies();
     }, []);
 
     return (
-        <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-11/12 mx-auto">
+        <div className="w-11/12 mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {
                     movies.map((movie, idx) => (
-                        <div key={idx} className='relative md:transition-transform md:duration-500 md:ease-in-out md:transform md:hover:scale-110'>
-                            <img className='w-full md:h-[320px] rounded-md' src={movie.posterImage} alt={movie.posterName} />
-                            <div className='absolute bottom-0 left-0 font-bold z-10 bg-[#E6E6E6] bg-opacity-50 px-2 py-6 w-full truncate'>
-                                <div className="flex items-center justify-start gap-2 text-sm text-[#800000]">
-                                    <p>
-                                        {`${movie.releaseDay} days ago`}
-                                    </p>
-                                    <p>
-                                        {`${movie.hits} Hits`}
-                                    </p>
+                        <div key={idx} className="card card-compact text-white shadow-lg rounded-lg overflow-hidden">
+                            <figure>
+                                <img
+                                    className="w-full h-[300px] object-cover lg:object-fill transition-transform duration-500 ease-in-out transform hover:scale-110"
+                                    src={movie.moviePoster}
+                                    alt={`${movie.movieTitle} poster`} />
+                            </figure>
+                            <div className="card-body p-4 text-black">
+                                <h2 className="card-title text-black text-2xl font-bold mb-2">{movie.movieTitle}</h2>
+                                <div className="flex justify-start items-center">
+                                    <div className="flex items-center gap-2">
+                                        <FaStar className="text-orange-400" />
+                                        <p className="text-gray-400">{`${movie.rating}/5`}</p>
+                                    </div>
+                                    <span className="text-sm text-gray-400 ml-14">{movie.genre}</span>
                                 </div>
-                                <p>{movie.posterName}</p>
-
+                                <div className="flex justify-between items-center">
+                                    <p className="text-sm text-gray-400 mb-2">Duration: {movie.duration} mins</p>
+                                    <p className="text-sm text-gray-400 mb-2">Release Year: {movie.releaseYear}</p>
+                                </div>
+                                <p className="text-sm text-gray-400 mb-2">{movie.summary}</p>
+                                <Link to={`/movies/${movie._id}`} className="card-actions justify-start mt-4">
+                                    <button className="btn bg-[#2ce6e6] text-black font-semibold">See Details</button>
+                                </Link>
                             </div>
                         </div>
                     ))

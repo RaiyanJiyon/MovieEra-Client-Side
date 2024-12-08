@@ -24,7 +24,7 @@ const MovieDetails = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/movies/${MovieData._id}`, {
+                fetch(`https://movie-era-server.vercel.app/movies/${MovieData._id}`, {
                     method: 'DELETE',
                 })
                     .then((res) => res.json())
@@ -52,7 +52,7 @@ const MovieDetails = () => {
     const handleAddToFavorite = () => {
         const favoriteMovie = {...MovieData, email: user.email};
 
-        fetch('http://localhost:5000/favorite', {
+        fetch('https://movie-era-server.vercel.app/favorite', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ const MyFavorites = () => {
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/favorite/${user.email}`);
+                const res = await fetch(`https://movie-era-server.vercel.app/favorite/${user.email}`);
                 if (!res.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -44,7 +44,7 @@ const MyFavorites = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/favorite/${_id}`, {
+                fetch(`https://movie-era-server.vercel.app/favorite/${_id}`, {
                     method: 'DELETE',
                 })
                 .then(res => res.json())

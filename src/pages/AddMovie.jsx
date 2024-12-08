@@ -79,7 +79,7 @@ const AddMovie = () => {
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
-            fetch('http://localhost:5000/movies', {
+            fetch('https://movie-era-server.vercel.app/movies', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

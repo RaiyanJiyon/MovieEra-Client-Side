@@ -4,7 +4,10 @@ export const validateURL = (url) => {
 };
 
 export const validateNotEmpty = (value) => {
-    return value.trim() !== '';
+    if (Array.isArray(value)) {
+        return value.length > 0; // For arrays, check if it has elements
+    }
+    return typeof value === 'string' && value.trim().length > 0; // For strings, check if it's non-empty
 };
 
 export const validateMinLength = (value, length) => {

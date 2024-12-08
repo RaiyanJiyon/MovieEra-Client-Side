@@ -122,12 +122,12 @@ const MovieDetails = () => {
                                         <td className="px-4 py-2 font-bold text-gray-600">Genre</td>
                                         <td className="px-4 py-2">
                                             {
-                                                Array.isArray ? 
-                                                MovieData.genre.join(', ')
-                                                :
-                                                MovieData.genre
+                                                Array.isArray(MovieData.genre) ?
+                                                    MovieData.genre.join(', ')
+                                                    :
+                                                    MovieData.genre
                                             }
-                                            </td>
+                                        </td>
                                     </tr>
                                     <tr className="border-b border-gray-200">
                                         <td className="px-4 py-2 font-bold text-gray-600">Released</td>

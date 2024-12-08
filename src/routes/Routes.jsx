@@ -34,7 +34,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/movies/:id',
-                element: <MovieDetails />,
+                element: (
+                    <PrivateRoute>
+                        <MovieDetails />
+                    </PrivateRoute>
+                ),
                 loader: ({ params }) => fetch(`https://movie-era-server.vercel.app/movies/${params.id}`)
             },
             {

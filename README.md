@@ -8,7 +8,7 @@ Your ultimate movie portal to explore, manage, and favorite your preferred films
 - **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.  
 - **Dynamic Movie Management:** Add, update, and delete movies with seamless functionality.  
 - **Favorite Movies:** Manage a personalized list of favorite movies for quick access.  
-- **Search and Filters:** Quickly search for movies by title and sort by highest ratings or other criteria.  
+- **Search and Filters:** Quickly search for movies by title.  
 - **Dark/Light Theme Toggle:** Choose your preferred viewing mode for an enhanced experience.  
 
 ## Pages and Functionality 📖  
@@ -39,7 +39,7 @@ Your ultimate movie portal to explore, manage, and favorite your preferred films
 - **Frontend:** React, React Router, Tailwind CSS.  
 - **Backend:** Node.js, Express.js, MongoDB.  
 - **Authentication:** Firebase Authentication with Google login support.  
-- **Hosting:** Netlify for the client-side, Vercel for the server-side.  
+- **Hosting:** Firebase for the client-side, Vercel for the server-side.  
 
 ## Additional Features 🚀  
 - **Environment Variables:** Securely manage Firebase config keys and MongoDB credentials.  

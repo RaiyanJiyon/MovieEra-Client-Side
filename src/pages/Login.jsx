@@ -34,11 +34,9 @@ const Login = () => {
         const password = formData.get('password');
 
         const userLoginInformation = { email, password };
-        console.log(userLoginInformation);
 
         signInUser(email, password)
             .then(userCredential => {
-                console.log(userCredential.user);
                 SuccessToaster('Successfully Logged In');
                 form.reset();
                 navigate(location?.state ? location.state : '/');

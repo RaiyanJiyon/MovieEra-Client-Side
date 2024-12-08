@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import Banner from "../components/home/Banner";
 import Section1 from "../components/home/ExtraSections/Section1";
 import Section2 from "../components/home/ExtraSections/Section2";
 import FeaturedMovies from "../components/home/FeaturedMovies";
 
 const Home = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
     return (
         <div>
             <div>

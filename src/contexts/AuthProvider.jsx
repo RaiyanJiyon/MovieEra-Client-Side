@@ -32,7 +32,6 @@ const AuthProvider = ({ children }) => {
     };
 
     const updateUserProfile = (displayName, photoURL) => {
-        setLoading(true);
         return updateProfile(auth.currentUser, {
             displayName: displayName,
             photoURL: photoURL
@@ -46,8 +45,8 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
             setLoading(false);
+            setUser(currentUser);
         });
         return () => unsubscribe();
     }, []);
@@ -55,6 +54,7 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         setUser,
+        loading,
         createUserWithEmail,
         createUserWithGoogle,
         signInUser,
